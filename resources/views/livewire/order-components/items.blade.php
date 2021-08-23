@@ -9,24 +9,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="tb-col-type"><span class="sub-text">Investment</span></td>
-                <td class="tb-col-quantity"><span class="sub-text">2</span></td>
-                <td class="tb-col-description"><span class="sub-text">Item short description</span></td>
-                <td class="tb-col-amount tb-col-end"><span class="lead-text">2,500.00</span></td>
-            </tr>
-            <tr>
-                <td class="tb-col-type"><span class="sub-text">Profit - 4.76%</span></td>
-                <td class="tb-col-quantity"><span class="sub-text">2</span></td>
-                <td class="tb-col-description"><span class="sub-text">Item short description</span></td>
-                <td class="tb-col-amount tb-col-end"><span class="lead-text">119.10</span></td>
-            </tr>
-            <tr>
-                <td class="tb-col-type"><span class="sub-text">Profit - 4.76%</span></td>
-                <td class="tb-col-quantity"><span class="sub-text">2</span></td>
-                <td class="tb-col-description"><span class="sub-text">Item short description</span></td>
-                <td class="tb-col-amount tb-col-end"><span class="lead-text">119.10</span></td>
-            </tr>
+            @forelse ($items as $item)
+                <tr>
+                    <td class="tb-col-type"><span class="sub-text">{{  $item->name  }}}}</span></td>
+                    <td class="tb-col-quantity"><span class="sub-text">{{ $item->quantity }}</span></td>
+                    <td class="tb-col-description"><span class="sub-text">{{ $item->description }}</span></td>
+                    <td class="tb-col-amount tb-col-end"><span class="lead-text">Kes {{ $item->amount }}</span></td>
+                </tr>
+            @empty
+                <tr>
+                    <td class="tb-col-type"><span class="">No Items added Yet.</span></td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

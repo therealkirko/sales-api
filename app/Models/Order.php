@@ -31,4 +31,9 @@ class Order extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

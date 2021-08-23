@@ -6,13 +6,13 @@
                     <div class="nk-block-head-content">
                         <div class="nk-block-head-sub"><a href="#" class="back-to"><em class="icon ni ni-arrow-left"></em><span>Visit our website</span></a></div>
                         <div class="nk-block-head-content">
-                            <h2 class="nk-block-title fw-normal">Hey Dan</h2>
+                            <h2 class="nk-block-title fw-normal">Hey {{ ucFirst(strtok($client->name, ' ')) }}</h2>
                         </div>
                         <div class="nk-block-head-content float-right">
                             <ul class="nk-block-tools gx-3">
                                 <li class="order-md-last">
                                     <div class="dropdown">
-                                        <a href="#" class="btn btn-primary" data-toggle="dropdown"><span>Placed Order</span><em class="icon ni ni-chevron-down"></em></a>
+                                        <a href="#" class="btn btn-primary" data-toggle="dropdown"><span>Processing Order</span><em class="icon ni ni-chevron-down"></em></a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-auto mt-1">
                                             <ul class="link-list-plain">
                                                 <li><a href="#" class="btn btn-danger">Cancel</a></li>
@@ -21,10 +21,11 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="#" class="btn btn-icon btn-light"><em class="icon ni ni-reload"></em></a></li>
+                                <li><a onclick="history.go(0);" class="btn btn-icon btn-light"><em class="icon ni ni-reload"></em></a></li>
+                                {{-- <li><a href="#" onclick="window.location.reload();" class="btn btn-icon btn-light"><em class="icon ni ni-reload"></em></a></li> --}}
                             </ul>
                         </div> <br>
-                        <h6><span class="badge badge-outline badge-primary">Order ID: c4RVLw</span></h6>
+                        <h6><span class="badge badge-outline badge-primary">Order ID: {{ $order->id }}</span></h6>
                     </div>
                 </div> <br>
                 <div class="nk-block invest-block">
@@ -32,8 +33,11 @@
                         <div class="row g-gs">
                             <div class="col-lg-7">
                                 <div class="invest-field form-group">
+                                    <div class="card-inner">
+                                        <h5>Business Details</h5>
+                                    </div>
                                     <a href="#" class="invest-cc-chosen">
-                                        @livewire('order-components.business')
+                                        @livewire('order-components.business', ['order' => $order])
                                     </a>
                                 </div>
                                 <div class="nk-block nk-block-lg">
@@ -44,12 +48,11 @@
                                         <h5>Items List</h5>
                                         <p>Please confrim the items before checking out.</p>
                                     </div>
-                                    @livewire('order-components.items')
+                                    @livewire('order-components.items', ['order' => $order])
                                 </div> <br>
                                 <div class="invest-field form-group">
-                                    <div class="custom-control custom-control-xs custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="checkbox">
-                                        <label class="custom-control-label" for="checkbox">I agree the <a href="#">terms and &amp; conditions.</a></label>
+                                    <div class="custom-control">
+                                        <p>Kindly <span class="text-danger"><b>do not</b></span> share this link with  anyone. Read our terms and conditions <a href="#">terms and &amp; conditions.</a> to know how it works.</p>
                                     </div>
                                 </div>
                             </div>
